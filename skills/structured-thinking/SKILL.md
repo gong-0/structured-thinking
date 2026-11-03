@@ -1,119 +1,115 @@
 ---
 name: structured-thinking
 description: >-
-  Structured thinking for any task that needs more than a one-step answer: planning, design, verification,
-  audits, analysis, root-cause tracing, comparisons, decisions, reports, and splitting work. Three moves: group
-  MECE (sideways), lay out the process start to end (time), and stack a hierarchy tree (top-down), with seams
-  checked against the actual state. Use it proactively whenever a task has several parts, several steps, or
-  several areas, even if the user doesn't ask for structure. Scale the effort: for small judgments run the
-  self-check silently and answer briefly; for large tasks do the full method and show the structure. Triggers
-  include "plan", "design", "check", "audit", "verify", "analyze", "compare", "why", "organize", "MECE",
-  "end to end", "기획", "설계", "점검", "검증", "전수조사", "분석", "비교", "왜", "정리해줘", "구조화", "빠진 거 없나".
-  Skip only for typo fixes, pure lookups, and executing work that is already fully decided.
+  Structure a multi-part problem: group it MECE, walk the process end to end, stack it as a tree, and verify
+  every hand-off against the actual state. Use for planning or design, full audits and consistency checks,
+  tracing numbers that don't add up, and splitting work across people or agents. Strong triggers: "MECE",
+  "end to end", "audit everything", "anything missing?", "plan this", "전수조사", "빠진 거 없나", "처음부터
+  끝까지", "점검", "설계", "기획". Not for quick questions, lookups, or executing decided work.
 ---
 
 # Structured Thinking
 
-Three moves. Each looks at the problem along a different axis, and they work together:
+Three moves, each along a different axis:
 
-| Move | Axis | Question it answers | Strongest in |
-|---|---|---|---|
-| 1. Grouping (MECE) | Sideways — items on the same level | Did I split this so nothing is missing and nothing overlaps? | Classifications, splitting work, checking that parts sum to the total |
-| 2. Process (start to end) | Time — what happens first, next, last | Is every step connected, from the first input to the final output? | Audits, tracing a wrong number, release and rollout order |
-| 3. Hierarchy (tree) | Top-down — big to small | Does each level hold only things of the same size, under one parent? | Planning (goal → sub-goals → tasks), menu and screen structure, "why" hypothesis trees, reports |
+| Move | Axis | Strongest in |
+|---|---|---|
+| 1. Grouping (MECE) | Sideways: items on one level | Classifications, splitting work, parts that must sum to a total |
+| 2. Process (start to end) | Time: first, next, last | Audits, tracing a wrong number, rollout order |
+| 3. Hierarchy (tree) | Top-down: big to small | Planning (goal → sub-goals → tasks), menu and document structure, "why" trees |
 
-The numbers are names, not an order. On a real problem, usually walk the **process** first to see the whole, drop into a **tree** at each step, and split every level of the tree **MECE**. For a pure classification task, start with MECE.
+The numbers are names, not an order. Usually walk the process first, drop into a tree at each step, and split each level MECE. For a pure classification task, start with MECE.
+
+You already know what MECE, "answer first" and "siblings the same size" mean. This skill adds five things that are easy to skip: **seam checks, number checks, a name table, a default audit scope, and stopping rules.**
 
 ## Scale the effort
 
-| Task size | What to do | What the answer looks like |
+| Task | Do | Show |
 |---|---|---|
-| Small (one question, one judgment) | Run the self-check in your head. Don't draw tables or trees. | Short, normal answer. Structure shows only in what you chose to say. |
-| Medium (a few parts or steps) | Pick the one move that fits best (MECE, process, or tree) and apply it. | One compact structure (a short list or a small table). |
-| Large (many steps, areas, or owners) | Full method: fix the scope, walk the process, build the tree, split each level MECE, verify seams. | Answer first, then the structure. |
+| Small: one question or judgment | Run the self-check in your head | A normal short answer |
+| Medium: a few parts or steps | Use the one move that fits | One compact list or table |
+| Large: many steps, areas or owners | Full method below | Answer first, then the structure |
 
-Over-structuring is a failure too: a long framework on a simple question hides the answer. When in doubt, go one size smaller in the output and keep the full check internal.
+When in doubt, go one size smaller in the output and keep the full check internal.
 
-## 1. Grouping — MECE
+**Medium task, good:**
+> Three of the five order statuses are fine. `delayed` is on a different axis (timing), so it overlaps `pending` and `shipped`. Split it out: status `pending / paid / shipped / other`, timing `on time / delayed`.
 
-Mutually Exclusive, Collectively Exhaustive.
+**Same task, over-structured (don't):**
+> ## 1. Scope ## 2. Process map ## 3. Issue tree ## 4. MECE analysis … (a page of headings before the one-line answer)
 
-- **One axis per list.** Don't mix "by region" and "by size" in one list. If two axes show up, make two lists.
-- **Exhaustive.** The parts add up to the whole. Keep an explicit bucket for what doesn't fit yet (`Other`, `Undetermined`) rather than dropping it.
-- **Exclusive.** Every item lands in exactly one bucket. If an item could go in two, the axis is wrong.
-- **Check with numbers when you can.** Sum of parts = total, to the unit. If it doesn't add up, name the remainder (e.g. "not attributable to any contract") as its own line instead of hiding it.
+## Seam checks (the most useful part)
 
-Example: margin = commission margin + bonus margin is MECE if every received and paid amount belongs to exactly one side. If per-contract margins don't sum to total margin, something sits outside contracts. Show it as a line.
+Most real defects sit between steps, not inside them. At every hand-off, check against the actual state, not the plan:
 
-## 2. Process — start to end
+- **Exists:** the previous step's output is really there (the file uploaded, the migration applied, the job finished, the approval recorded).
+- **Same run:** it comes from the current run. Compare timestamps, run ids, or input fingerprints on both sides.
+- **Expected shape:** the next step can read it (same format, same units, same version).
+- **Re-run awareness:** if step B is re-run, does step C know? A later step built on stale output is a break, even if every step is right on its own.
+- **Clock and source:** when comparing times, make sure both sides use the same clock and time zone.
 
-Lay the work out in the order it actually happens. For each step, write what comes in, what goes out, and who or what owns it.
+A plan that says "B then C" is not evidence that B's output exists. If you can't check a seam (no access, blocked), list it as an explicit gap rather than assuming it.
 
-- **No broken links.** Each step's output is the next step's input. Look for steps that read something stale or never produced.
-- **Walk the whole chain.** When auditing, follow the flow end to end instead of jumping between screens or modules.
-- **Watch the seams.** Problems cluster where one step is re-run and the next step doesn't know (e.g. step B recalculated, step C still uses old B).
-- **Verify each seam against the actual state, not the plan.** At every hand-off, check that the previous step's output really exists, comes from the current run, and is in the shape the next step expects (the schema migrated, the file uploaded, the job finished). A plan that says "B then C" is not evidence that B's output is there.
+## Number checks
 
-Example: upload → parse → reconcile → calculate → deduct → close → publish. A later step built on an earlier step's stale output is a process break, even if every step is correct on its own.
+Whenever parts should add up, add them up to the unit.
 
-## 3. Hierarchy — tree
+- Sum of parts = total. If not, the difference is a finding: name the remainder ("costs not assigned to any project", "orders from before the cutover") and show it as its own line.
+- Check the same total in every place that shows it (dashboard = report = export).
+- A total that looks accurate can hide offsetting errors (one region +30%, another −30%). Break it down one level before trusting it.
 
-Go from the conclusion or largest group down to details.
+## Name table
 
-- **Same level, same size.** "Billing" and "a rounding bug" cannot be siblings.
-- **Each parent is the sum of its children** (this is MECE applied at every level).
-- **Conclusion first.** In writing, the top of the tree is the answer; the branches are the grouped reasons; the leaves are the evidence.
+Keep a small table while you work: one concept, one name, and where each variant appears.
 
-Example: Revenue → profitability analysis → by product / by rep / by contract → per period / lifetime / per unit.
+| Concept | Names in use | Pick |
+|---|---|---|
+| A person who buys | customer / client / user / account | customer |
+| "Needs recalculation" | stale / outdated / refreshing / old result | needs recalculation |
 
-Two uses beyond writing:
-- **Planning.** Break the goal into sub-goals, then into tasks. Missing features show up as empty branches.
-- **Why-trees.** For "why is this wrong?", branch the possible causes MECE (e.g. bad input / code change / stale step), then rule branches out with evidence one at a time.
+Two failure modes, both invisible to MECE and trees: one thing with several names, and one name meaning several things (e.g. "report" for both the weekly email and the export file). Resolve each to one name; if a name must keep two meanings, qualify it.
+
+## MECE, with boundary rules and a cap on "Other"
+
+- One axis per list. If two axes appear, make two lists.
+- If an item fits two buckets, either the axis is wrong **or** you need a boundary rule. Often a rule is enough: "if both apply, use the larger amount" or "the first matching rule wins". Write the rule down.
+- Keep an `Other` / `Undetermined` bucket so nothing is dropped, but cap it: if it holds more than about 10% of the items or amount, split it again.
+
+## Default audit scope
+
+"Check it" means every layer unless the user narrows it. Before starting, write the layers as one MECE list, map what has already been checked, and name the gaps. Then give each layer or area to one owner.
+
+For a software product, layers top to bottom:
+design (structure, classifications, flows) · logic (one source per concept, preview = real calculation) · data (right population, no silent defaults, totals add up) · access (roles, tenants) · presentation (wording, leftover dev traces) · operations (deploys, running servers, environments, tests touching shared data) · other.
+
+For a business plan or proposal: market · customer · offer · economics (unit costs, margins, totals add up) · operations · risks · assumptions not yet checked · other.
+
+For each concept, find every place that computes or decides it. Two places with two formulas is a finding.
+
+## Stopping rules and priority
+
+- Go only as deep as the next action needs. Stop a branch when you know what to do about it.
+- Branches that don't change the conclusion collapse into one line.
+- Order findings and work by impact: money or security first, then blocked flows, then wording.
+- In a large audit, report the top items fully and list the rest briefly. Don't let completeness delay the answer.
 
 ## How to apply
 
-**Planning or design**
-1. Write the end-to-end process the user or system goes through.
-2. Under each step, build the tree of what's needed.
-3. Check each level is MECE. Add the `Other` / `Undetermined` bucket.
+**Planning:** write the end-to-end process, build the tree of what each step needs, check each level is MECE with an `Other` bucket. Empty branches are missing features.
 
-**Designing a classification**
-1. Name the single axis.
-2. List the buckets, including the leftover bucket.
-3. Test: can any real item fall into two buckets, or none? Can the buckets be summed to the total?
+**Why-trees:** for "why is this wrong?", branch the possible causes (bad input / logic change / stale step), then rule them out with evidence one at a time.
 
-**Audit or consistency check**
-0. **Fix the scope first.** "Check it" means every layer unless the user narrows it. Write the layers as a MECE list, map what has already been checked onto it, and name the gaps before starting. For a software product, a good default is one axis, product layer top to bottom:
-   design (structure as a tree, classifications MECE, flows end to end) · logic (one source per concept, preview = real) · data (right population, no silent defaults, parts sum to total) · access (roles, tenants) · presentation (wording, leftover dev traces) · operations (deploys, running servers, environments, tests touching shared data) · other.
-1. Split the system MECE into areas (and give each area to one person or agent, so work does not overlap).
-2. Within each area, walk the process end to end.
-3. For each concept, find every place that computes or decides it. Two places with two formulas is a finding.
-4. Report as a tree: severity groups → findings → evidence.
+**Tracing a wrong number:** walk the process backwards; at each step run the seam checks. The first step whose input is wrong or stale is the break.
 
-**Tracing a number that doesn't match**
-1. Walk the process backwards from the wrong number.
-2. At each step, check its input is from the same run and time as its output.
-3. The first step where the input is wrong or stale is the break.
+**Splitting work:** split MECE by one axis (area, file set, or step) so owners never touch the same thing; order pieces by the process; at each hand-off say what the next owner receives and how they can check it exists.
 
-**Splitting work across people or agents**
-1. Split the work MECE by one axis (area, file set, or process step) so no two owners touch the same thing.
-2. Order the pieces by the process: what must finish before what can start.
-3. At each hand-off, state what the next owner receives and how they can check it exists (see "Verify each seam").
-
-**Writing a report or proposal**
-1. Answer first (top of the tree).
-2. Group the support MECE, each group with one heading.
-3. Order items within a group by the process (or by severity when there is no process).
-
-**Anything else**
-Pick the move that matches the question: "is anything missing or overlapping?" → MECE; "in what order, and where does it break?" → process; "what is the big picture and what sits under it?" → tree. Then run the self-check.
+**Reporting:** answer first, support grouped MECE under one heading each, items ordered by process or impact.
 
 ## Self-check before you answer
 
-- [ ] Each list uses one axis only.
-- [ ] Parts sum to the whole, or the remainder is named.
-- [ ] No item fits in two places.
-- [ ] The flow has no gap from first input to final output.
-- [ ] Every seam was checked against the actual state (output exists, current run, expected shape), not assumed from the plan.
-- [ ] Siblings in the tree are the same size; the answer is at the top.
-- [ ] One name means one thing, and one thing has one name (trees don't catch this; keep a small name table).
+- [ ] Each list uses one axis; overlaps have a boundary rule.
+- [ ] Parts sum to the whole, or the remainder is named. `Other` is small.
+- [ ] Every seam was checked against the actual state, or listed as unchecked.
+- [ ] One name means one thing (name table).
+- [ ] Depth stopped where the next action is clear; highest impact first.
+- [ ] Output size matches task size.
