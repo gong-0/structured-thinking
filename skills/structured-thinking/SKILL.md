@@ -15,11 +15,11 @@ description: >-
 
 Three moves. Each looks at the problem along a different axis, and they work together:
 
-| Move | Axis | Question it answers |
-|---|---|---|
-| 1. Grouping (MECE) | Sideways — items on the same level | Did I split this so nothing is missing and nothing overlaps? |
-| 2. Process (start to end) | Time — what happens first, next, last | Is every step connected, from the first input to the final output? |
-| 3. Hierarchy (tree) | Top-down — big to small | Does each level hold only things of the same size, under one parent? |
+| Move | Axis | Question it answers | Strongest in |
+|---|---|---|---|
+| 1. Grouping (MECE) | Sideways — items on the same level | Did I split this so nothing is missing and nothing overlaps? | Classifications, splitting work, checking that parts sum to the total |
+| 2. Process (start to end) | Time — what happens first, next, last | Is every step connected, from the first input to the final output? | Audits, tracing a wrong number, release and rollout order |
+| 3. Hierarchy (tree) | Top-down — big to small | Does each level hold only things of the same size, under one parent? | Planning (goal → sub-goals → tasks), menu and screen structure, "why" hypothesis trees, reports |
 
 The numbers are names, not an order. On a real problem, usually walk the **process** first to see the whole, drop into a **tree** at each step, and split every level of the tree **MECE**. For a pure classification task, start with MECE.
 
@@ -54,6 +54,10 @@ Go from the conclusion or largest group down to details.
 - **Conclusion first.** In writing, the top of the tree is the answer; the branches are the grouped reasons; the leaves are the evidence.
 
 Example: Revenue → profitability analysis → by product / by rep / by contract → per period / lifetime / per unit.
+
+Two uses beyond writing:
+- **Planning.** Break the goal into sub-goals, then into tasks. Missing features show up as empty branches.
+- **Why-trees.** For "why is this wrong?", branch the possible causes MECE (e.g. bad input / code change / stale step), then rule branches out with evidence one at a time.
 
 ## How to apply
 
