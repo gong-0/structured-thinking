@@ -21,7 +21,7 @@ Three moves. Each looks at the problem along a different axis, and they work tog
 | 2. Process (start to end) | Time — what happens first, next, last | Is every step connected, from the first input to the final output? |
 | 3. Hierarchy (tree) | Top-down — big to small | Does each level hold only things of the same size, under one parent? |
 
-Use them in this order on a real problem: walk the **process** to see the whole, drop into a **tree** at each step, and split every level of the tree **MECE**.
+The numbers are names, not an order. On a real problem, usually walk the **process** first to see the whole, drop into a **tree** at each step, and split every level of the tree **MECE**. For a pure classification task, start with MECE.
 
 ## 1. Grouping — MECE
 
@@ -41,6 +41,7 @@ Lay the work out in the order it actually happens. For each step, write what com
 - **No broken links.** Each step's output is the next step's input. Look for steps that read something stale or never produced.
 - **Walk the whole chain.** When auditing, follow the flow end to end instead of jumping between screens or modules.
 - **Watch the seams.** Problems cluster where one step is re-run and the next step doesn't know (e.g. step B recalculated, step C still uses old B).
+- **Verify each seam against the actual state, not the plan.** At every hand-off, check that the previous step's output really exists, comes from the current run, and is in the shape the next step expects (the schema migrated, the file uploaded, the job finished). A plan that says "B then C" is not evidence that B's output is there.
 
 Example: upload → parse → reconcile → calculate → deduct → close → publish. A later step built on an earlier step's stale output is a process break, even if every step is correct on its own.
 
@@ -77,10 +78,18 @@ Example: Revenue → profitability analysis → by product / by rep / by contrac
 2. At each step, check its input is from the same run and time as its output.
 3. The first step where the input is wrong or stale is the break.
 
+**Splitting work across people or agents**
+1. Split the work MECE by one axis (area, file set, or process step) so no two owners touch the same thing.
+2. Order the pieces by the process: what must finish before what can start.
+3. At each hand-off, state what the next owner receives and how they can check it exists (see "Verify each seam").
+
 **Writing a report or proposal**
 1. Answer first (top of the tree).
 2. Group the support MECE, each group with one heading.
 3. Order items within a group by the process (or by severity when there is no process).
+
+**Anything else**
+Pick the move that matches the question: "is anything missing or overlapping?" → MECE; "in what order, and where does it break?" → process; "what is the big picture and what sits under it?" → tree. Then run the self-check.
 
 ## Self-check before you answer
 
@@ -88,4 +97,5 @@ Example: Revenue → profitability analysis → by product / by rep / by contrac
 - [ ] Parts sum to the whole, or the remainder is named.
 - [ ] No item fits in two places.
 - [ ] The flow has no gap from first input to final output.
+- [ ] Every seam was checked against the actual state (output exists, current run, expected shape), not assumed from the plan.
 - [ ] Siblings in the tree are the same size; the answer is at the top.
