@@ -105,3 +105,4 @@ Pick the move that matches the question: "is anything missing or overlapping?" â
 - [ ] The flow has no gap from first input to final output.
 - [ ] Every seam was checked against the actual state (output exists, current run, expected shape), not assumed from the plan.
 - [ ] Siblings in the tree are the same size; the answer is at the top.
+- [ ] One name means one thing, and one thing has one name (trees don't catch this; keep a small name table).
