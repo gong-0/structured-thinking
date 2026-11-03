@@ -1,14 +1,15 @@
 ---
 name: structured-thinking
 description: >-
-  Structure any problem with three moves: group it MECE (sideways), lay it out as a process from start to
-  end (time), and stack it as a hierarchy tree (top-down). Use when planning a feature, screen, menu or
-  settings system; designing a classification (statuses, categories, cause buckets, filters, tabs); running a
-  full audit or consistency check ("is anything missing or inconsistent?"); tracing why numbers don't match;
-  writing a report, proposal or plan; or splitting work across people or agents without overlap. Triggers:
-  "MECE", "structure this", "organize", "audit everything", "anything missing?", "as a tree", "end to end",
-  "plan this", "구조화", "정리해줘", "전수조사", "빠진 거 없나", "트리로", "처음부터 끝까지", "기획해봐", "MECE 해?".
-  Skip for typo fixes, one-line questions, or executing work that is already decided.
+  Structured thinking for any task that needs more than a one-step answer: planning, design, verification,
+  audits, analysis, root-cause tracing, comparisons, decisions, reports, and splitting work. Three moves: group
+  MECE (sideways), lay out the process start to end (time), and stack a hierarchy tree (top-down), with seams
+  checked against the actual state. Use it proactively whenever a task has several parts, several steps, or
+  several areas, even if the user doesn't ask for structure. Scale the effort: for small judgments run the
+  self-check silently and answer briefly; for large tasks do the full method and show the structure. Triggers
+  include "plan", "design", "check", "audit", "verify", "analyze", "compare", "why", "organize", "MECE",
+  "end to end", "기획", "설계", "점검", "검증", "전수조사", "분석", "비교", "왜", "정리해줘", "구조화", "빠진 거 없나".
+  Skip only for typo fixes, pure lookups, and executing work that is already fully decided.
 ---
 
 # Structured Thinking
@@ -22,6 +23,16 @@ Three moves. Each looks at the problem along a different axis, and they work tog
 | 3. Hierarchy (tree) | Top-down — big to small | Does each level hold only things of the same size, under one parent? | Planning (goal → sub-goals → tasks), menu and screen structure, "why" hypothesis trees, reports |
 
 The numbers are names, not an order. On a real problem, usually walk the **process** first to see the whole, drop into a **tree** at each step, and split every level of the tree **MECE**. For a pure classification task, start with MECE.
+
+## Scale the effort
+
+| Task size | What to do | What the answer looks like |
+|---|---|---|
+| Small (one question, one judgment) | Run the self-check in your head. Don't draw tables or trees. | Short, normal answer. Structure shows only in what you chose to say. |
+| Medium (a few parts or steps) | Pick the one move that fits best (MECE, process, or tree) and apply it. | One compact structure (a short list or a small table). |
+| Large (many steps, areas, or owners) | Full method: fix the scope, walk the process, build the tree, split each level MECE, verify seams. | Answer first, then the structure. |
+
+Over-structuring is a failure too: a long framework on a simple question hides the answer. When in doubt, go one size smaller in the output and keep the full check internal.
 
 ## 1. Grouping — MECE
 
