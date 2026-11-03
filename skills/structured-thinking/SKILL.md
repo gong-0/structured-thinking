@@ -72,6 +72,8 @@ Two uses beyond writing:
 3. Test: can any real item fall into two buckets, or none? Can the buckets be summed to the total?
 
 **Audit or consistency check**
+0. **Fix the scope first.** "Check it" means every layer unless the user narrows it. Write the layers as a MECE list, map what has already been checked onto it, and name the gaps before starting. For a software product, a good default is one axis, product layer top to bottom:
+   design (structure as a tree, classifications MECE, flows end to end) · logic (one source per concept, preview = real) · data (right population, no silent defaults, parts sum to total) · access (roles, tenants) · presentation (wording, leftover dev traces) · operations (deploys, running servers, environments, tests touching shared data) · other.
 1. Split the system MECE into areas (and give each area to one person or agent, so work does not overlap).
 2. Within each area, walk the process end to end.
 3. For each concept, find every place that computes or decides it. Two places with two formulas is a finding.
