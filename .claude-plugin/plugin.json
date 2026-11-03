@@ -1,0 +1,7 @@
+{
+  "name": "structured-thinking",
+  "version": "1.1.0",
+  "description": "Structure problems with MECE grouping, an end-to-end process, and a hierarchy tree, with seams checked against the actual state.",
+  "author": { "name": "gong-0" },
+  "license": "MIT"
+}

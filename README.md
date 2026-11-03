@@ -10,6 +10,17 @@ Claude uses it when you plan a feature, design a classification, audit a system 
 
 ## Install
 
+As a plugin (gets updates):
+
+```
+/plugin marketplace add gong-0/structured-thinking
+/plugin install structured-thinking@structured-thinking
+```
+
+To pull a new version: `/plugin marketplace update structured-thinking`, or turn on auto-update for this marketplace in `/plugin`.
+
+Or copy the skill once (no updates):
+
 ```bash
 git clone https://github.com/gong-0/structured-thinking /tmp/st && cp -r /tmp/st/skills/structured-thinking ~/.claude/skills/
 ```

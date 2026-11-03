@@ -1,0 +1,11 @@
+{
+  "name": "structured-thinking",
+  "owner": { "name": "gong-0" },
+  "plugins": [
+    {
+      "name": "structured-thinking",
+      "source": "./",
+      "description": "Structure problems with MECE grouping, an end-to-end process, and a hierarchy tree."
+    }
+  ]
+}
